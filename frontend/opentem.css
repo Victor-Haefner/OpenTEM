@@ -1,0 +1,43 @@
+body {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 99%;
+}
+
+#toolbar {
+	width: 98vw;
+	height: 4vh;
+	border-radius: 15px;
+	border: 1px solid #333;
+	background: #eefaff;
+}
+
+#panels {
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+	margin-top:1vh;
+}
+
+.panel {
+	width: 48.5vw;
+	height: 100%;
+	border-radius: 15px;
+	border: 1px solid #333;
+	background: #eefaff;
+}
+
+#explorer {
+	margin-right: 1vw;
+}
+
+#assembly {
+}
+
+#search {
+	height: 4vh;
+	border-radius: 15px;
+	border-bottom: 1px solid #333;
+}
