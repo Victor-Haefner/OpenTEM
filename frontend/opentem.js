@@ -4,6 +4,10 @@ function allowDrop(ev) {
 	ev.preventDefault();
 }
 
+function pressHandle(handle) {
+	handle.parentNode.draggable = true;
+}
+
 function dragStart(ev) {
 	ev.dataTransfer.setData("text/plain", ev.target.id);
 	ev.dataTransfer.dropEffect = "move";
@@ -12,6 +16,7 @@ function dragStart(ev) {
 
 function dragEnd(ev) {
 	//ev.target.style.display = 'flex';
+	ev.target.draggable = false;
 }
 
 function dragover(ev) {
@@ -43,11 +48,13 @@ function addTextBlock(panelName) {
 	panel.appendChild(block);
 
 	handle.innerHTML = '\u2022<br>\u2022<br>\u2022';
+	handle.onmousedown = function() { pressHandle(this); };
 
 	block.id = 'block'+uniqueCounter; uniqueCounter += 1;
-	block.draggable = "true";
+	//block.draggable = "true";
 	block.ondragstart = dragStart;
 	block.ondragend = dragEnd;
 	block.ondragover = dragover;
 	block.ondrop = function(event) { drop(event, this); };
+	//panel.ondrop = function(event) { drop(event, this); };
 }
