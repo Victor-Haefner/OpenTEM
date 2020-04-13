@@ -7,6 +7,9 @@ body {
 }
 
 #toolbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 	width: 98vw;
 	height: 4vh;
 	border-radius: 15px;

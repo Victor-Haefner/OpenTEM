@@ -70,7 +70,6 @@ function addTextBlock(panelName) {
 	field.onfocus = function() { onFocusBlock(this.parentNode); };
 	field.onblur = function() { onUnfocusBlock(this.parentNode); };
 
-
 	block.appendChild(field);
 	block.appendChild(handle);
 	panel.appendChild(block);
@@ -79,10 +78,29 @@ function addTextBlock(panelName) {
 	handle.onmousedown = function() { pressHandle(this); };
 
 	block.id = 'block'+uniqueCounter; uniqueCounter += 1;
-	//block.draggable = "true";
 	block.ondragstart = dragStart;
 	block.ondragend = dragEnd;
 	block.ondragover = dragover;
 	block.ondrop = function(event) { drop(event, this); };
 	//panel.ondrop = function(event) { drop(event, this); };
 }
+
+function compileBlocks() {
+	var panel = document.getElementById('assembly');
+	var txt = '';
+	for (var i = 0; i<panel.children.length; i++) {
+		var v = panel.children[i].children[0].value;
+		if (v != "") txt += v + '<br>';
+	}
+
+	var w = window.open();
+	w.document.write(txt);
+	w.document.title = 'OpenTEM Assembly';
+	w.document.close();
+}
+
+
+
+
+
+
