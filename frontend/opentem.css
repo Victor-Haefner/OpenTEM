@@ -21,14 +21,6 @@ body {
 	margin-top:1vh;
 }
 
-.panel {
-	width: 48.5vw;
-	height: 100%;
-	border-radius: 15px;
-	border: 1px solid #333;
-	background: #eefaff;
-}
-
 #explorer {
 	margin-right: 1vw;
 }
@@ -41,3 +33,67 @@ body {
 	border-radius: 15px;
 	border-bottom: 1px solid #333;
 }
+
+
+
+.panel {
+	display: flex;
+	flex-direction: column;
+	width: 48.5vw;
+	height: 100%;
+	border-radius: 15px;
+	border: 1px solid #333;
+	background: #eefaff;
+}
+
+.block {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	width: 98%;
+	margin: 1%;
+	border-radius: 15px;
+	border: 1px solid #333;
+	background: #fff;
+}
+
+
+
+
+.blockkkk {
+	align-items: stretch;
+	align-content: stretch;
+}
+
+
+
+
+.handle {
+	width: 4%;
+	border-radius: 15px;
+	color: #fff;
+	margin: 0;
+	margin: 2px;
+}
+
+.handle:focus {
+	outline: none;
+}
+
+.field {
+	width: 96%;
+	padding: 10px;
+	margin-right: 15px;
+	resize: none;
+	border: none;
+}
+
+.field:focus {
+	outline: none;
+}
+
+
+
+
+
+
