@@ -1,9 +1,4 @@
 
-
-function allowDrop(ev) {
-	ev.preventDefault();
-}
-
 function pressHandle(handle) {
 	handle.parentNode.draggable = true;
 }
@@ -33,6 +28,36 @@ function drop(ev, target) {
 
 var uniqueCounter = 0;
 
+function remTextBlock(block) {
+	block.parentNode.removeChild(block);
+}
+
+function onFocusBlock(block) {
+	if (block.parentNode.id != 'assembly') return;
+
+	var buttonMinus = document.createElement('button');
+	buttonMinus.className = 'newBlockButton';
+	buttonMinus.innerHTML = '-';
+	buttonMinus.onmousedown = function() { remTextBlock(block); };
+
+	var buttonPlus = document.createElement('button');
+	buttonPlus.className = 'newBlockButton';
+	buttonPlus.innerHTML = '+';
+	buttonPlus.onmousedown = function() { addTextBlock('assembly'); };
+
+	var buttons = document.createElement('div');
+	if (block.parentNode.children.length > 1) {
+		buttons.appendChild(buttonMinus);
+	}
+	buttons.appendChild(buttonPlus);
+	block.parentNode.insertBefore(buttons, block.nextSibling);
+}
+
+function onUnfocusBlock(block) {
+	if (block.parentNode.id != 'assembly') return;
+	block.parentNode.removeChild(block.nextSibling);
+}
+
 function addTextBlock(panelName) {
 	var panel = document.getElementById(panelName);
 	var block = document.createElement('div');
@@ -42,9 +67,12 @@ function addTextBlock(panelName) {
 	block.className = 'block';
 	handle.className = 'handle';
 	field.className = 'field';
+	field.onfocus = function() { onFocusBlock(this.parentNode); };
+	field.onblur = function() { onUnfocusBlock(this.parentNode); };
 
-	block.appendChild(handle);
+
 	block.appendChild(field);
+	block.appendChild(handle);
 	panel.appendChild(block);
 
 	handle.innerHTML = '\u2022<br>\u2022<br>\u2022';

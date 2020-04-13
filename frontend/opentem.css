@@ -34,8 +34,6 @@ body {
 	border-bottom: 1px solid #333;
 }
 
-
-
 .panel {
 	display: flex;
 	flex-direction: column;
@@ -52,25 +50,14 @@ body {
 	flex-grow: 1;
 	width: 98%;
 	margin: 1%;
-	border-radius: 15px;
+	border-radius: 10px;
 	border: 1px solid #333;
 	background: #fff;
 }
 
-
-
-
-.blockkkk {
-	align-items: stretch;
-	align-content: stretch;
-}
-
-
-
-
 .handle {
-	width: 4%;
-	border-radius: 15px;
+	width: 2%;
+	border-radius: 10px;
 	color: #fff;
 	margin: 0;
 	margin: 2px;
@@ -81,17 +68,22 @@ body {
 }
 
 .field {
-	width: 96%;
+	width: 98%;
 	padding: 10px;
-	margin-right: 15px;
 	resize: none;
 	border: none;
+	border-radius: 10px;
 }
 
 .field:focus {
 	outline: none;
 }
 
+.newBlockButton {
+	width: 30px;
+	height: 20px;
+	margin-left: 20px;
+}
 
 
 
