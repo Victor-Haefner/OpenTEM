@@ -14,6 +14,7 @@
 	<div id='panels'>
 		<div class='panel' id='explorer'>
 			<div id='search'></div>
+			<div id='entries'></div>
 		</div>
 
 		<div class='panel' id='assembly'></div>
@@ -21,8 +22,8 @@
 
 	<script>
 		document.title = 'OpenTEM';
-		addTextBlock('assembly');
-		addTextBlock('assembly');
-		addTextBlock('assembly');
+		viewer = addTextBlock('explorer');
+		viewer.id = 'viewer';
+		addTextBlock('assembly'); // initial block
 	</script>
 </body>

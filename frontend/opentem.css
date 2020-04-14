@@ -31,12 +31,6 @@ body {
 #assembly {
 }
 
-#search {
-	height: 4vh;
-	border-radius: 15px;
-	border-bottom: 1px solid #333;
-}
-
 .panel {
 	display: flex;
 	flex-direction: column;
@@ -45,6 +39,30 @@ body {
 	border-radius: 15px;
 	border: 1px solid #333;
 	background: #eefaff;
+}
+
+#search {
+	height: 4vh;
+	border-radius: 15px;
+	border-bottom: 1px solid #333;
+}
+
+#entries {
+	display: flex;
+	flex-direction: column;
+	height: 50%;
+	border-radius: 15px;
+	border: 1px solid #333;
+	margin: 1%;
+}
+
+#entries button {
+	border-radius: 10px;
+	margin: 2px;
+}
+
+#viewer {
+	height: 50%;
 }
 
 .block {
