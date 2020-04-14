@@ -27,6 +27,7 @@ function drop(ev, target) {
 		var block = addTextBlock('assembly');
 		block.children[0].value = dragged.children[0].value;
 		block.ID = dragged.ID;
+		console.log(dragged);
 		target.parentNode.insertBefore(block, target);
 	} else {
 		target.parentNode.insertBefore(dragged, target);
@@ -47,30 +48,46 @@ function uuidv4() {
 }
 
 function selectEntry(entry) {
-	var viewer = document.getElementById('viewer').children[0];
-	viewer.ID = entry.ID;
-	viewer.value = entry.data;
+	var viewer = document.getElementById('viewer');
+	viewer.ID = entry.data[0];
+	viewer.children[0].value = entry.data[1];
+
+	var entryID = document.getElementById('entryID');
+	entryID.innerHTML = entry.data[0];
+
+	var entryTags = document.getElementById('entryTags');
+	entryTags.innerHTML = entry.data[2];
 }
 
-function addEntry(lbl, txt, ID) {
+function addEntry(ID, content, tags) {
+	var lbl = content.substr(0,200);
 	var entries = document.getElementById('entries');
 	var entry = document.createElement('button');
 	entry.className = 'entry';
 	entry.innerHTML = lbl;
-	entry.data = txt;
-	entry.ID = ID;
+	entry.data = [ID, content, tags ];
 	entry.onclick = function() { selectEntry(entry); };
 	entries.appendChild(entry);
 }
 
-function storeBlock(block) {
-	console.log('storeBlock');
+function showEntry(fileID, content) {
+	getData("tags", fileID, function(tags) { addEntry(fileID, content, tags); } );
+}
+		
+function showEntries(data) {
+	var entries = data.split(/\n/);
+	for (var i in entries) {
+		var fileID = entries[i];
+		(function( fileID ) {
+			getData("content", fileID, function(content) { showEntry(fileID, content); } );
+		})( fileID );
+	}
+}
 
-	if (block.ID == undefined) block.ID = uuidv4();
-	var content = block.children[0].value;
-	var bID = block.ID;
-
-	addEntry(bID, content, bID);
+function updateEntries() {
+	var entries = document.getElementById('entries');
+	entries.innerHTML = "";
+	getData("entries", "", showEntries);
 }
 
 function addBlockButton(lbl, func) {

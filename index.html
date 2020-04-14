@@ -1,5 +1,6 @@
 <head>
 <style>@import "frontend/opentem.css";</style>
+<script type="text/javascript" src="frontend/storage.js"></script>
 <script type="text/javascript" src="frontend/opentem.js"></script>
 
 </head>
@@ -15,6 +16,8 @@
 		<div class='panel' id='explorer'>
 			<div id='search'></div>
 			<div id='entries'></div>
+			<div id='entryID' class='infoField'></div>
+			<div id='entryTags' class='infoField'></div>
 		</div>
 
 		<div class='panel' id='assembly'></div>
@@ -25,5 +28,6 @@
 		viewer = addTextBlock('explorer');
 		viewer.id = 'viewer';
 		addTextBlock('assembly'); // initial block
+		updateEntries();
 	</script>
 </body>

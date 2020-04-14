@@ -59,6 +59,12 @@ body {
 #entries button {
 	border-radius: 10px;
 	margin: 2px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.infoField {
+	height: 3vh;
 }
 
 #viewer {
