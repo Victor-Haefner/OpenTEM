@@ -82,7 +82,8 @@ function showEntry(fileID, content) {
 	if (fileID == "") return;
 	getData("tags", fileID, function(tags) { addEntry(fileID, content, tags); } );
 }
-		
+
+var getEntriesBusy = false; // avoid too many calls at once		
 function showEntries(data) {
 	if (data == "") return;
 	var entries = data.split(/\n/);
@@ -92,12 +93,23 @@ function showEntries(data) {
 			getData("content", fileID, function(content) { showEntry(fileID, content); } );
 		})( fileID );
 	}
+	getEntriesBusy = false;
 }
 
 function updateEntries() {
+	getEntriesBusy = true;
 	var entries = document.getElementById('entries');
 	entries.innerHTML = "";
 	getData("entries", "", showEntries);
+}
+
+function onFilterChange(input) {
+	if (getEntriesBusy && input.value != "") return;
+	getEntriesBusy = true;
+
+	var entries = document.getElementById('entries');
+	entries.innerHTML = "";
+	getData("entries", input.value, showEntries);
 }
 
 function addBlockButton(lbl, func) {
@@ -169,8 +181,6 @@ function compileBlocks() {
 	w.document.title = 'OpenTEM Assembly';
 	w.document.close();
 }
-
-
 
 
 

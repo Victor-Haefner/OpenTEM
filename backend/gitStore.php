@@ -37,9 +37,11 @@ function git_store($fileName, $content, $tags) {
 function get_blocks($filter) {
 	$blocksPath = dirname(__FILE__)."/../data/blocks";
 	if ($handle = opendir($blocksPath)) {
-		while (false !== ($entry = readdir($handle))) {
-			if ($entry != "." && $entry != "..") {
-				echo "$entry\n";
+		if ($filter == "") {
+			while (false !== ($entry = readdir($handle))) {
+				if ($entry != "." && $entry != "..") {
+					echo "$entry\n";
+				}
 			}
 		}
 		closedir($handle);
