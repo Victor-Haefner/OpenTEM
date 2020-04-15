@@ -8,6 +8,6 @@ $filter = "block1";
 
 include dirname(__FILE__).'/gitStore.php';
 //git_store($fileName, $content, $tags);
-deleteBlock($filter);
+get_blocks("car ");
 
 ?>

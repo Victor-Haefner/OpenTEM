@@ -35,15 +35,23 @@ function git_store($fileName, $content, $tags) {
 }
 
 function get_blocks($filter) {
+	$filterParts = explode(" ", $filter);
 	$blocksPath = dirname(__FILE__)."/../data/blocks";
 	if ($handle = opendir($blocksPath)) {
-		if ($filter == "") {
-			while (false !== ($entry = readdir($handle))) {
-				if ($entry != "." && $entry != "..") {
-					echo "$entry\n";
+		while (false !== ($entry = readdir($handle))) {
+			if ($entry == "." || $entry == "..") continue;
+			if ($filter == "") echo "$entry\n";
+			else {
+				$content = file_get_contents($blocksPath."/".$entry);
+				$match = true;
+				foreach ($filterParts as &$part) {
+					if ($part == "") continue;
+					if( strpos($content,$part) === false) { $match = false; break; }
 				}
+				if ($match) echo "$entry\n";
 			}
 		}
+		echo "\n"; // echo something
 		closedir($handle);
 	}
 }
