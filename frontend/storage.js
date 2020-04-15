@@ -20,7 +20,7 @@ function storeBlock(block) {
 	data.append("tags" , tags);
 
 	sendData(data);
-	updateEntries();
+	setTimeout('updateEntries();', 500);
 }
 
 function getData(query, filter, handler) {
@@ -36,4 +36,14 @@ function getData(query, filter, handler) {
 			handler(xhr.responseText);
 		}
         };
+}
+
+function deleteEntry(entryID) {
+	console.log(entryID);
+	var data = new FormData();
+	data.append("ID" , entryID);
+	var xhr = new XMLHttpRequest();
+	xhr.open( 'post', 'backend/delData.php', true );
+	xhr.send(data);
+	setTimeout('updateEntries();', 500);
 }

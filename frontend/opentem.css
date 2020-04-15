@@ -56,11 +56,21 @@ body {
 	margin: 1%;
 }
 
+#entries div {
+	display: flex;
+	flex-direction: row;
+}
+
 #entries button {
+	flex-shrink: 1;
 	border-radius: 10px;
 	margin: 2px;
+}
+
+.entry {
 	white-space: nowrap;
 	overflow: hidden;
+	flex-grow: 10;
 }
 
 .infoField {

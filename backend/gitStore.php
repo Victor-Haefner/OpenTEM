@@ -56,6 +56,27 @@ function get_tags($fileName) {
 	echo file_get_contents($tagFilePath);
 }
 
+function deleteBlock($fileName) {
+	// prepare paths
+	$repoPath = dirname(__FILE__)."/../data";
+	$blocksPath = $repoPath."/blocks";
+	$tagsPath = $repoPath."/tags";
+	$filePath = $blocksPath."/".$fileName;
+	$tagFilePath = $tagsPath."/".$fileName;	
+
+	// open repo
+	if (!file_exists($repoPath."/.git/config")) return;
+	$repo = Git::open($repoPath);
+	$repo->run("checkout -f master");
+
+	if (file_exists($filePath)) unlink ($filePath);
+	if (file_exists($tagFilePath)) unlink ($tagFilePath);
+
+	// commit removal
+	$repo->add('.');
+	$repo->commit("remove block ".$fileName);
+}
+
 // git structure:
 //  every block is a file and
 

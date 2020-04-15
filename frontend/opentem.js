@@ -62,19 +62,29 @@ function selectEntry(entry) {
 function addEntry(ID, content, tags) {
 	var lbl = content.substr(0,200);
 	var entries = document.getElementById('entries');
-	var entry = document.createElement('button');
-	entry.className = 'entry';
-	entry.innerHTML = lbl;
-	entry.data = [ID, content, tags ];
-	entry.onclick = function() { selectEntry(entry); };
+	var entry = document.createElement('div');
+	var link = document.createElement('button');
+	var del = document.createElement('button');
+	entry.appendChild(link);
+	entry.appendChild(del);
+
+	link.className = 'entry';
+	link.innerHTML = lbl;
+	link.data = [ ID, content, tags ];
+	link.onclick = function() { selectEntry(link); };
+	
+	del.innerHTML = 'x';
+	del.onclick = function() { deleteEntry(link.data[0]); };
 	entries.appendChild(entry);
 }
 
 function showEntry(fileID, content) {
+	if (fileID == "") return;
 	getData("tags", fileID, function(tags) { addEntry(fileID, content, tags); } );
 }
 		
 function showEntries(data) {
+	if (data == "") return;
 	var entries = data.split(/\n/);
 	for (var i in entries) {
 		var fileID = entries[i];
